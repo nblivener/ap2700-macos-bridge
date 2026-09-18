@@ -40,7 +40,11 @@ archive) are local artifacts and are ignored by Git.
 
 ## Dependencies
 
-Use Apple Silicon macOS 15 or later. Install Apple command-line tools, Rosetta 2, Homebrew `libusb`, and an x86
+Use Apple Silicon macOS 15 or newer with general-purpose Rosetta support.
+Only macOS 15.7.9 is tested. Apple provides general-purpose Rosetta through
+macOS 27; this build is not supported on macOS 28 or later. See the
+[Apple notice](https://support.apple.com/en-us/102527) and README explanation.
+Install Apple command-line tools, Rosetta 2, Homebrew `libusb`, and an x86
 MinGW-w64 compiler. The downloaded Wine runtime and the AP2700 program are
 x86, so Apple Silicon macOS needs Rosetta for this setup. On this machine the
 relevant commands are:

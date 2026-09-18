@@ -10,9 +10,24 @@ accuracy and exhaustive feature coverage still need comparison with Windows.
 
 ## Build your app
 
-You need an **Apple Silicon Mac**, macOS 15 or later, Rosetta 2, and your own
+You need an **Apple Silicon Mac**, macOS 15 or newer **with general-purpose
+Rosetta support**, and your own
 `AP2700Setup.exe` from the AP2700 3.30 SP2 installer. Intel Macs and other
 installer versions are not covered by this setup script.
+
+**Rosetta limits the lifetime of this build.** Apple says general-purpose
+Rosetta is available through macOS 27; starting with macOS 28, only a limited
+exception for certain older games remains. Do not assume AP2700 qualifies.
+This bundle should therefore be treated as unsupported on macOS 28 and later.
+See [Apple's Rosetta support notice](https://support.apple.com/en-us/102527).
+Only macOS 15.7.9 has been tested here; Rosetta availability alone does not
+establish compatibility with other releases.
+
+Wine supplies Windows APIs, while Rosetta translates Intel instructions. Our
+launcher and USB helper are native ARM, but the bundled Wine runtime and original
+AP2700 application still require Intel translation. A native ARM build of Wine
+alone would not make the original x86 AP2700 executable native. Removing Rosetta
+requires another CPU translation/emulation route, with additional work and tests.
 
 1. Install [Homebrew](https://brew.sh/), Apple's command-line tools
    (`xcode-select --install`), and Rosetta (`softwareupdate --install-rosetta`)
