@@ -52,6 +52,12 @@ The private Windows Documents folder is inside that prefix; Wine's `Z:` drive
 also lets you access Mac files. Copying the app does not copy settings changed
 after its first launch. Keep the USB adapter assigned to macOS if a VM is open.
 
+If text is too small, run `./tools/set_scaling.sh 125` from this repository to
+select 125% Wine scaling, then save your work and reopen AP2700 when convenient.
+The script does not restart the app or change your Mac's display resolution.
+Supported values are 100, 125, 150, 175, and 200; 100 restores the default.
+This uses the same [LogPixels setting as Wine's configuration tool](https://github.com/wine-mirror/wine/blob/wine-11.0/programs/winecfg/x11drvdlg.c).
+
 With the app closed and adapter attached, this diagnostic checks a real USB
 descriptor, Cypress buffer layout, completion event, and returned byte count:
 
