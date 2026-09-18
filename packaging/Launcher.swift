@@ -110,11 +110,12 @@ final class Launcher: NSObject, NSApplicationDelegate {
     func stop() {
         if stopping { return }
         stopping = true
+        // Release USB before asking Wine to tear down its process tree.
+        if helper?.isRunning == true { helper?.terminate(); helper?.waitUntilExit() }
         if wine?.isRunning == true {
             // Scoped to this app's private prefix; never affects another Wine application.
             if let server = try? process(wineBin.appendingPathComponent("wineserver"), ["-k"]) { server.waitUntilExit() }
         }
-        if helper?.isRunning == true { helper?.terminate(); helper?.waitUntilExit() }
         try? logHandle?.close()
         if lockFD >= 0 { Darwin.close(lockFD); lockFD = -1 }
     }
@@ -151,6 +152,10 @@ final class Launcher: NSObject, NSApplicationDelegate {
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         stop()
         return .terminateNow
+    }
+
+    func applicationWillTerminate(_ notification: Notification) {
+        stop()
     }
 }
 
