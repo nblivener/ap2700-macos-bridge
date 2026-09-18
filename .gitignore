@@ -1,0 +1,9 @@
+.venv/
+build/
+research/
+__pycache__/
+CHECKPOINT.md
+.DS_Store
+*.log
+/Launch AP2700 (CrossOver).command
+/Launch AP2700 (Wine).command
